@@ -1,0 +1,128 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Body Styling */
+body {
+    background: linear-gradient(to right, #4d2c6f, #324d7d);
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px;
+}
+
+/* Header */
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.title {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    animation: fadeDown 1s ease forwards;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #e0e0e0;
+    animation: fadeDown 1s ease forwards;
+    animation-delay: 0.3s;
+}
+
+/* Cards */
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 20px;
+    width: 250px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.card.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Animations */
+@keyframes fadeDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+}
+
+.fade-in.delay-1 { animation-delay: 0.5s; }
+.fade-in.delay-2 { animation-delay: 1s; }
+
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Buttons */
+.launch-btn {
+    padding: 15px 30px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background: #4CAF50;
+    color: white;
+    margin: 10px;
+    transition: all 0.3s;
+    animation: fadeInUp 1s ease forwards;
+}
+
+#openSolar { animation-delay: 1.2s; }
+#openConsumption { animation-delay: 1.5s; }
+
+.launch-btn:hover {
+    background: #45a049;
+    transform: scale(1.05);
+}
+
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Footer */
+footer {
+    margin-top: 50px;
+    text-align: center;
+    color: #e0e0e0;
+}

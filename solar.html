@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solar Energy Calculator</title>
+  <link rel="stylesheet" href="../style.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Calculator Container */
+    body {
+      background: linear-gradient(135deg, #1f1c2c, #928dab);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+    }
+
+    .calculator {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(15px);
+      border-radius: 20px;
+      padding: 30px;
+      width: 350px;
+      max-width: 90%;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .calculator:hover {
+      transform: scale(1.03);
+    }
+
+    .calculator h2 {
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+      color: #ffd700;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+    }
+
+    .calculator input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: none;
+      background: rgba(255,255,255,0.2);
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    .calculator input::placeholder {
+      color: #e0e0e0;
+    }
+
+    .calculator button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      background: #ffd700;
+      color: #1f1c2c;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .calculator button:hover {
+      background: #ffec70;
+      transform: scale(1.05);
+    }
+
+    .calculator h3 {
+      margin-top: 20px;
+      font-size: 1.1rem;
+      color: #fff;
+    }
+
+    /* Output style */
+    .highlight {
+      color: #ffd700;
+      font-weight: bold;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="calculator">
+    <h2>Solar Energy Calculator</h2>
+
+    <input type="number" id="capacity" placeholder="Solar Panel Capacity (kW)">
+    <input type="number" id="sunlight" placeholder="Average Sunlight Hours per Day">
+    <input type="number" id="cost" placeholder="Electricity Cost per kWh (₹)">
+
+    <button id="calculateBtn">Calculate Savings</button>
+
+    <h3 id="result">Enter values to calculate savings</h3>
+  </div>
+
+  <script>
+    const capacityInput = document.getElementById('capacity');
+    const sunlightInput = document.getElementById('sunlight');
+    const costInput = document.getElementById('cost');
+    const result = document.getElementById('result');
+
+    function calculateSolar() {
+      const capacity = parseFloat(capacityInput.value);
+      const sunlight = parseFloat(sunlightInput.value);
+      const cost = parseFloat(costInput.value);
+
+      if(isNaN(capacity) || isNaN(sunlight) || isNaN(cost)) {
+        result.innerHTML = "Please enter all values correctly!";
+        return;
+      }
+
+      const dailyEnergy = capacity * sunlight; // kWh/day
+      const monthlyEnergy = dailyEnergy * 30; // kWh/month
+      const monthlySavings = monthlyEnergy * cost; // ₹/month
+
+      result.innerHTML = `
+        Daily Energy: <span class="highlight">${dailyEnergy.toFixed(2)} kWh</span><br>
+        Monthly Energy: <span class="highlight">${monthlyEnergy.toFixed(2)} kWh</span><br>
+        Estimated Monthly Savings: <span class="highlight">₹${monthlySavings.toFixed(2)}</span>
+      `;
+    }
+
+    // Event listeners for button and real-time enter
+    document.getElementById('calculateBtn').addEventListener('click', calculateSolar);
+    capacityInput.addEventListener('input', calculateSolar);
+    sunlightInput.addEventListener('input', calculateSolar);
+    costInput.addEventListener('input', calculateSolar);
+  </script>
+
+</body>
+</html>
